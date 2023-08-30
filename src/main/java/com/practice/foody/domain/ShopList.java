@@ -24,4 +24,7 @@ public class ShopList {
     @Column(name = "List")
     private String shoppingList;
 
+    public ShopList(String shoppingList) {
+        this.shoppingList = shoppingList;
+    }
 }

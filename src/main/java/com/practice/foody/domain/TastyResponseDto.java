@@ -10,14 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SectionDto {
-    @JsonProperty("id")
-    private long id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("position")
-    private int position;
-    @JsonProperty("components")
-    private List<ComponentDto> components;
-
+public class TastyResponseDto {
+    @JsonProperty("count")
+    private int count;
+    @JsonProperty("results")
+    private List<RecipesDto> recipes;
 }

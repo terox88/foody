@@ -13,7 +13,7 @@ public class UserDto {
     private String login;
     private String email;
     private String password;
-    private Prefernces prefernces;
+    private PreferencesDto preferences;
     private long week;
     private Role role;
     private LocalDate created;
