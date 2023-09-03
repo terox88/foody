@@ -10,14 +10,12 @@ import java.util.List;
 @Getter
 public class UserDto {
     private long id;
-    private String login;
     private String email;
     private String password;
-    private PreferencesDto preferences;
-    private long week;
+    private long preferencesId;
     private Role role;
     private LocalDate created;
-    private List<WeeklyRecipesDto> weeklyRecipesDtos;
+    private List<Long> weeklyRecipesId;
 
 
 

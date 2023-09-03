@@ -3,12 +3,14 @@ package com.practice.foody.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
 @Getter
 public class WeeklyRecipesDto {
     private long id;
-    private long week;
-    private List<DailyRecipesDto> dailyRecipesDtos;
+    private LocalDate weekBegin;
+    private LocalDate weekEnd;
+    private List<Long> dailyRecipesId;
 }

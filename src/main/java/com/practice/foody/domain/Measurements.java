@@ -2,26 +2,23 @@ package com.practice.foody.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
-@AllArgsConstructor
+@Entity(name = "measurements")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Entity
-public class ShopList {
+public class Measurements {
     @Id
-    @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
-    private long id;
-    @Column(name = "List")
-    private String shoppingList;
-
+    @Column(name = "ID")
+    private Long id;
+    @Column(name = "QUANTITY")
+    private String quantity;
+    private Unit unit;
 }
+

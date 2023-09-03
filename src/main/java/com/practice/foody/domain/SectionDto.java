@@ -11,8 +11,6 @@ import java.util.List;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SectionDto {
-    @JsonProperty("id")
-    private long id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("position")

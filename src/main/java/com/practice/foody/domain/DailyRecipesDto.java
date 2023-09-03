@@ -14,6 +14,6 @@ public class DailyRecipesDto {
     private RecipesDto brunch;
     private RecipesDto lunch;
     private RecipesDto diner;
-    private ShopList shopList;
+    private long shopListId;
 
 }

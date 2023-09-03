@@ -9,8 +9,6 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NutritionDto {
-    @JsonProperty("id")
-    private long id;
     @JsonProperty("protein")
     private int	protein;
     @JsonProperty("fat")

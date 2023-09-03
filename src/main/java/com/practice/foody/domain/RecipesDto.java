@@ -23,6 +23,7 @@ public class RecipesDto {
     private List<SectionDto> sections;
     @JsonProperty("nutrition")
     private NutritionDto nutrition;
+    private MealType mealType;
 
 
 

@@ -8,11 +8,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UnitDto {
-    @JsonProperty("system")
-    private String system;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("quantity")
-    private String quantity;
+public class TodoisTokenDto {
+    @JsonProperty("access_token")
+    private String token;
+    @JsonProperty("token_type")
+    private String type;
 }
