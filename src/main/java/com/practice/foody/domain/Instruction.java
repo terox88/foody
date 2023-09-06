@@ -1,13 +1,11 @@
 package com.practice.foody.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "instructions")
 @Getter
@@ -22,4 +20,8 @@ public class Instruction {
     private int position;
     @Column(name = "TEXT")
     private String text;
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "RECIPES_ID")
+    private Recipes recipes;
 }

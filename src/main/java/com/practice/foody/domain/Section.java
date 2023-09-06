@@ -20,6 +20,14 @@ public class Section {
     private String name;
     @Column(name = "POSITION")
     private int position;
-
+    @OneToMany(
+            targetEntity = Component.class,
+            mappedBy = "section",
+            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
+            fetch = FetchType.LAZY
+    )
     private List<Component> components;
+    @ManyToOne
+    @JoinColumn(name = "RECIPES_ID")
+    private Recipes recipes;
 }

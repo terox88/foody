@@ -22,12 +22,16 @@ public class User {
     @Column(name = "EMAIL")
     @NotNull
     private String email;
+    @Column(name = "PASSWORD")
+    @NotNull
     private String password;
     @Setter
     @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "PREFERENCES_ID")
     private Preferences preferences;
+    @Column(name = "ROLE")
     private Role role;
+    @Column(name = "CREATED")
     private LocalDate created;
     @Setter
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)

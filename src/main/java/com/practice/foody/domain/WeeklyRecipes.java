@@ -2,6 +2,7 @@ package com.practice.foody.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity(name = "WEEKLY_RECIPES")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class WeeklyRecipes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
