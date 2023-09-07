@@ -3,10 +3,16 @@ package com.practice.foody.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 @Entity(name = "components")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Component {
     @Id
     @NotNull

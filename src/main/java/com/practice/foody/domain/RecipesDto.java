@@ -3,12 +3,12 @@ package com.practice.foody.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
 
-@AllArgsConstructor
-@Getter
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipesDto {
     @JsonProperty("id")
@@ -23,7 +23,7 @@ public class RecipesDto {
     private List<SectionDto> sections;
     @JsonProperty("nutrition")
     private NutritionDto nutrition;
-    private MealType mealType;
+    //private MealType mealType;
 
 
 
