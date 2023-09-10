@@ -22,7 +22,7 @@ public class DailyRecipes {
     @Column(name = "DAY")
     private LocalDate day;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    private List<Recipes> recipes = new ArrayList<>();
+    private List<Recipe> recipes = new ArrayList<>();
     @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "SHOPLIST_ID")
     private ShopList shopList;

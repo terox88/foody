@@ -27,4 +27,13 @@ public class Nutrition {
     private int	carbohydrates;
     @Column(name = "FIBER")
     private int	fiber;
+
+    public Nutrition(int protein, int fat, int calories, int sugar, int carbohydrates, int fiber) {
+        this.protein = protein;
+        this.fat = fat;
+        this.calories = calories;
+        this.sugar = sugar;
+        this.carbohydrates = carbohydrates;
+        this.fiber = fiber;
+    }
 }

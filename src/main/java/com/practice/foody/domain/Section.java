@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 @Entity(name = "sections")
@@ -29,5 +30,12 @@ public class Section {
     private List<Component> components;
     @ManyToOne
     @JoinColumn(name = "RECIPES_ID")
-    private Recipes recipes;
+    @Setter
+    private Recipe recipe;
+
+    public Section(String name, int position, List<Component> components) {
+        this.name = name;
+        this.position = position;
+        this.components = components;
+    }
 }

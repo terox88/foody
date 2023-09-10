@@ -21,7 +21,7 @@ public class ShopList {
     @NotNull
     @Column(name = "ID", unique = true)
     private long id;
-    @Column(name = "List")
+    @Column(name = "List", length = 2000)
     private String shoppingList;
 
 }

@@ -18,10 +18,16 @@ public class Instruction {
     private Long id;
     @Column(name = "POSITION")
     private int position;
-    @Column(name = "TEXT")
+    @Column(name = "TEXT", length = 5000)
     private String text;
     @Setter
     @ManyToOne
     @JoinColumn(name = "RECIPES_ID")
-    private Recipes recipes;
+    private Recipe recipe;
+
+    public Instruction(Long id, int position, String text) {
+        this.id = id;
+        this.position = position;
+        this.text = text;
+    }
 }

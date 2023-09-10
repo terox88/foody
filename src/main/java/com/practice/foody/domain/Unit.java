@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "units")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -15,10 +15,14 @@ public class Unit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private long id;
-    @Column(name = "SYSTEM")
+    @Column(name = "SYS")
     private String system;
     @Column(name = "NAME")
     private String name;
-    @Column(name = "QUANTITY")
-    private String quantity;
+
+
+    public Unit(String system, String name) {
+        this.system = system;
+        this.name = name;
+    }
 }

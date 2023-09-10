@@ -13,6 +13,5 @@ public class UnitDto {
     private String system;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("quantity")
-    private String quantity;
+
 }

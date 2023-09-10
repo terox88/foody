@@ -25,5 +25,11 @@ public class Measurements {
     @ManyToOne
     @JoinColumn(name = "COMPONENT_ID")
     private Component component;
+
+    public Measurements(Long id, String quantity, Unit unit) {
+        this.id = id;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
 }
 

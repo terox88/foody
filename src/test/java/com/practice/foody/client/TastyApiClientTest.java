@@ -2,7 +2,7 @@ package com.practice.foody.client;
 
 import com.practice.foody.domain.MealType;
 import com.practice.foody.domain.Preferences;
-import com.practice.foody.domain.RecipesDto;
+import com.practice.foody.domain.RecipeDto;
 import com.practice.foody.domain.UserChose;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class TastyApiClientTest {
         Preferences preferences = new Preferences();
         preferences.getPreferences().add(UserChose.GLUTEN_FREE);
         //When
-        List<RecipesDto> response = tastyApiClient.getRecipes(preferences, MealType.BREAKFAST);
+        List<RecipeDto> response = tastyApiClient.getRecipes(tastyApiClient.createQuery(preferences, MealType.BREAKFAST,0));
         //Then
         System.out.println("WYNIK!!!!!!");
         System.out.println(response.size());

@@ -11,7 +11,7 @@ import java.util.List;
 public class DailyRecipesDto {
     private long id;
     private LocalDate day;
-    private List<RecipesDto> recipes;
+    private List<RecipeDto> recipes;
     private long shopListId;
 
 }

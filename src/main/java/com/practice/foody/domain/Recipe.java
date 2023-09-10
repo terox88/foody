@@ -6,19 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 @Entity(name ="RECIPES")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Recipes {
+public class Recipe {
     @Id
     @NotNull
     @Column (name = "ID")
     private Long id;
    @Column(name = "NAME")
     private String name;
-   @Column(name = "DESCRIPTION")
+   @Column(name = "DESCRIPTION", length = 1000)
     private String description;
    @Column(name = "MEAL_TYPE")
     private MealType mealType;
@@ -28,17 +29,17 @@ public class Recipes {
            joinColumns = {@JoinColumn(name = "RECIPES_ID", referencedColumnName = "ID")},
            inverseJoinColumns = {@JoinColumn(name = "DAILY_ID", referencedColumnName = "ID")}
    )
-    private List<DailyRecipes> dailyRecipes;
+    private List<DailyRecipes> dailyRecipes =new ArrayList<>();
     @OneToMany(
             targetEntity = Instruction.class,
-            mappedBy = "recipes",
+            mappedBy = "recipe",
             cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
     private List<Instruction> instructions;
     @OneToMany(
             targetEntity = Section.class,
-            mappedBy = "recipes",
+            mappedBy = "recipe",
             cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
@@ -46,4 +47,14 @@ public class Recipes {
     @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "NUTRITION_ID")
     private Nutrition nutrition;
+
+    public Recipe(Long id, String name, String description, MealType mealType, List<Instruction> instructions, List<Section> sections, Nutrition nutrition) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.mealType = mealType;
+        this.instructions = instructions;
+        this.sections = sections;
+        this.nutrition = nutrition;
+    }
 }

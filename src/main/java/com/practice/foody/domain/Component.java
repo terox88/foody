@@ -29,11 +29,20 @@ public class Component {
             fetch = FetchType.LAZY
     )
     private List<Measurements> measurements;
-    @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "INGREDIENT_ID")
+    @Setter
     private  Ingredient ingredient;
     @Setter
     @ManyToOne
     @JoinColumn(name = "SECTION_ID")
     private Section section;
+
+    public Component(Long id, int position, String text, List<Measurements> measurements, Ingredient ingredient) {
+        this.id = id;
+        this.position = position;
+        this.text = text;
+        this.measurements = measurements;
+        this.ingredient = ingredient;
+    }
 }
