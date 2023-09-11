@@ -1,9 +1,10 @@
 package com.practice.foody.repository;
 
 import com.practice.foody.domain.Recipe;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.Optional;
 @Repository

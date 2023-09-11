@@ -12,10 +12,10 @@ public class UserDto {
     private long id;
     private String email;
     private String password;
-    private long preferencesId;
+    private PreferencesDto preferences;
     private Role role;
     private LocalDate created;
-    private List<Long> weeklyRecipesId;
+
 
 
 

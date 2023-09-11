@@ -1,9 +1,7 @@
 package com.practice.foody.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class WeeklyRecipes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,4 +30,10 @@ public class WeeklyRecipes {
             fetch = FetchType.LAZY
     )
     private List<DailyRecipes> dailyRecipes = new ArrayList<>();
+
+    public WeeklyRecipes(LocalDate weekBegin, LocalDate weekEnd, User user) {
+        this.weekBegin = weekBegin;
+        this.weekEnd = weekEnd;
+        this.user = user;
+    }
 }

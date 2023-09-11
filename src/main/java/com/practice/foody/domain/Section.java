@@ -2,16 +2,14 @@ package com.practice.foody.domain;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 @Entity(name = "sections")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,10 +2,7 @@ package com.practice.foody.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,4 +43,12 @@ public class User {
     )
     private List<WeeklyRecipes> weeklyRecipes = new ArrayList<>();
 
+    public User(String email, String password, Preferences preferences, Role role, LocalDate created, TodoisToken token) {
+        this.email = email;
+        this.password = password;
+        this.preferences = preferences;
+        this.role = role;
+        this.created = created;
+        this.token = token;
+    }
 }
