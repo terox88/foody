@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class Nutrition {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

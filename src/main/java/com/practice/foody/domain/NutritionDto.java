@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
+@AllArgsConstructor
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NutritionDto {
     @JsonProperty("protein")
@@ -21,4 +22,7 @@ public class NutritionDto {
     private int	carbohydrates;
     @JsonProperty("fiber")
     private int	fiber;
+
+    public NutritionDto() {
+    }
 }

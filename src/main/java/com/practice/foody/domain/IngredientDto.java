@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
+@AllArgsConstructor
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IngredientDto {
-    @JsonProperty("id")
-    private long id;
     @JsonProperty("name")
     private String name;
+
+    public IngredientDto() {
+    }
 }

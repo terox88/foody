@@ -13,4 +13,7 @@ public class TodoisTokenDto {
     private String token;
     @JsonProperty("token_type")
     private String type;
+
+    public TodoisTokenDto() {
+    }
 }

@@ -3,8 +3,7 @@ package com.practice.foody.service;
 import com.practice.foody.domain.*;
 import com.practice.foody.exception.RecipeNotFoundException;
 import com.practice.foody.exception.UserNotFoundException;
-import com.practice.foody.repository.RecipeRepository;
-import com.practice.foody.repository.UserRepository;
+import com.practice.foody.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +14,10 @@ import java.util.List;
 public class DbService {
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
+    private final DailyRecipesRepository dailyRecipesRepository;
+    private final WeeklyRecipesRepository weeklyRecipesRepository;
+    private final TodoistProjectRepository todoistProjectRepository;
+    private final  TodoistTaskRepository toDoistTaskRepository;
 
     public Recipe saveRecipe(Recipe recipe) {
         for(Instruction instruction : recipe.getInstructions()) {
@@ -50,5 +53,22 @@ public class DbService {
     }
     public void deleteUser(long id) {
         userRepository.deleteById(id);
+    }
+
+    public DailyRecipes saveDailyRecipes(DailyRecipes dailyRecipes){
+        return dailyRecipesRepository.save(dailyRecipes);
+
+    }
+    public DailyRecipes getDailyRecipes(long id) {
+        return dailyRecipesRepository.findById(id).orElse(new DailyRecipes());
+    }
+    public WeeklyRecipes saveWeeklyRecipes(WeeklyRecipes weeklyRecipes){
+        return weeklyRecipesRepository.save(weeklyRecipes);
+    }
+    public TodoistProject saveTodoistProject(TodoistProject project) {
+        return todoistProjectRepository.save(project);
+    }
+    public TodoistTask saveTodoistTask(TodoistTask task) {
+        return toDoistTaskRepository.save(task);
     }
 }

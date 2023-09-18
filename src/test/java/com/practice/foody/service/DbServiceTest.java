@@ -1,10 +1,10 @@
 package com.practice.foody.service;
 
-import com.practice.foody.client.TastyApiClient;
 import com.practice.foody.domain.*;
 import com.practice.foody.exception.RecipeNotFoundException;
 import com.practice.foody.exception.UserNotFoundException;
-import com.practice.foody.mapper.TastyApiMapper;
+import com.practice.foody.repository.DailyRecipesRepository;
+import com.practice.foody.repository.WeeklyRecipesRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +19,10 @@ import java.util.List;
 public class DbServiceTest {
     @Autowired
     private DbService dbService;
+    @Autowired
+    private WeeklyRecipesRepository weeklyRecipesRepository;
+    @Autowired
+    private DailyRecipesRepository dailyRecipesRepository;
 
     private Recipe recipe;
     @BeforeEach
@@ -26,10 +30,9 @@ public class DbServiceTest {
         Instruction instruction = new Instruction(1L,1,"Test");
         List<Instruction> instructions = Arrays.asList(instruction);
         Unit unit = new Unit("Testing system", "gram");
-        Ingredient ingredient = new Ingredient(1L, "testing ingredient");
         Measurements measurements = new Measurements(1L,"12", unit);
         List<Measurements> measurementsList = Arrays.asList(measurements);
-        Component component = new Component(1L,1, "test component", measurementsList, ingredient);
+        Component component = new Component(1L,1, "test component", measurementsList, "test");
         List<Component> components = Arrays.asList(component);
         Section section = new Section("",1, components);
         List<Section> sections = Arrays.asList(section);
@@ -58,17 +61,23 @@ public class DbServiceTest {
         //Given
         Preferences preferences = new Preferences();
         preferences.getPreferences().add(UserChose.LOW_CALORIE);
-        User user = new User("test email", "password", preferences,Role.USER, LocalDate.now(),null);
+        User user = new User("test email", "password", preferences,Role.USER);
         WeeklyRecipes weeklyRecipes = new WeeklyRecipes(LocalDate.now(), LocalDate.now().plusDays(7), user);
-        DailyRecipes dailyRecipes = new DailyRecipes(LocalDate.now(), weeklyRecipes);
+        DailyRecipes dailyRecipes = new DailyRecipes(LocalDate.now(),weeklyRecipes);
         dailyRecipes.getRecipes().add(recipe);
         weeklyRecipes.getDailyRecipes().add(dailyRecipes);
         user.getWeeklyRecipes().add(weeklyRecipes);
         //When
         dbService.saveUser(user);
         long id = user.getId();
+        long dailyId = user.getWeeklyRecipes().get(0).getId();
+        long weeklyId = user.getWeeklyRecipes().get(0).getId();
         User savedUser = dbService.getUser(id);
         //Then
         Assertions.assertEquals("test recipe", savedUser.getWeeklyRecipes().get(0).getDailyRecipes().get(0).getRecipes().stream().toList().get(0).getName());
+        //CleanUp
+        dailyRecipesRepository.deleteById(dailyId);
+        weeklyRecipesRepository.deleteById(weeklyId);
+        dbService.deleteUser(id);
     }
 }

@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class Instruction {
    @Id
    @NotNull

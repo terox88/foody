@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class Component {
     @Id
     @NotNull
@@ -23,20 +22,18 @@ public class Component {
     @OneToMany(
             targetEntity = Measurements.class,
             mappedBy = "component",
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
+            cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY
     )
     private List<Measurements> measurements;
-    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "INGREDIENT_ID")
-    @Setter
-    private  Ingredient ingredient;
+    @Column(name = "INGREDIENT")
+    private  String ingredient;
     @Setter
     @ManyToOne
     @JoinColumn(name = "SECTION_ID")
     private Section section;
 
-    public Component(Long id, int position, String text, List<Measurements> measurements, Ingredient ingredient) {
+    public Component(Long id, int position, String text, List<Measurements> measurements, String ingredient) {
         this.id = id;
         this.position = position;
         this.text = text;

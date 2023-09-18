@@ -12,6 +12,6 @@ public class DailyRecipesDto {
     private long id;
     private LocalDate day;
     private List<RecipeDto> recipes;
-    private long shopListId;
+    private String shoppingList;
 
 }

@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity (name = "daily_recipes")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class DailyRecipes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,17 +22,31 @@ public class DailyRecipes {
     @Column(name = "DAY")
     private LocalDate day;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    private Set<Recipe> recipes = new HashSet<>();
-   @Column(name = "SHOP_LIST", length = 5000)
-    private String shopList;
-    @Setter
+    private List<Recipe> recipes = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "WEEKLY_RECIPES_ID")
     private WeeklyRecipes weeklyRecipes;
+    @Setter
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "TASK_ID")
+    private TodoistTask todoistTask;
 
     public DailyRecipes(LocalDate day, WeeklyRecipes weeklyRecipes) {
         this.day = day;
         this.weeklyRecipes = weeklyRecipes;
-        this.shopList = toString();
+    }
+
+
+    public String getShopList() {
+        StringBuilder shopList = new StringBuilder("Shop list for " + day + "\n");
+        Set<String> shopSet = recipes.stream()
+                .flatMap(recipe -> recipe.getSections().stream()
+                        .flatMap(section -> section.getComponents().stream()
+                                .map(Component::getIngredient)))
+                .collect(Collectors.toSet());
+        for (String ingredient : shopSet) {
+            shopList.append(ingredient).append("\n");
+        }
+        return shopList.toString();
     }
 }

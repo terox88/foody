@@ -2,10 +2,7 @@ package com.practice.foody.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class Recipe {
     @Id
     @NotNull
@@ -24,6 +20,7 @@ public class Recipe {
    @Column(name = "DESCRIPTION", length = 1000)
     private String description;
    @Column(name = "MEAL_TYPE")
+   @Setter
     private MealType mealType;
    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
    @JoinTable(
@@ -35,18 +32,18 @@ public class Recipe {
     @OneToMany(
             targetEntity = Instruction.class,
             mappedBy = "recipe",
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
+            cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY
     )
     private List<Instruction> instructions;
     @OneToMany(
             targetEntity = Section.class,
             mappedBy = "recipe",
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
+            cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY
     )
     private List<Section> sections;
-    @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToOne (cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "NUTRITION_ID")
     private Nutrition nutrition;
 

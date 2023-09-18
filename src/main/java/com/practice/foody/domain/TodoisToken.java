@@ -18,4 +18,9 @@ public class TodoisToken {
     private String token;
     @Column(name = "TYPE")
     private String type;
+
+    @Override
+    public String toString() {
+        return type + " " + token;
+    }
 }

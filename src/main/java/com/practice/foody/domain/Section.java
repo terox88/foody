@@ -9,7 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +21,7 @@ public class Section {
     @OneToMany(
             targetEntity = Component.class,
             mappedBy = "section",
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
+            cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY
     )
     private List<Component> components;

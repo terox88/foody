@@ -3,22 +3,22 @@ package com.practice.foody.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SectionDto {
+public class TodoistProjectDto {
+    @JsonProperty("id")
+    private String id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("position")
-    private int position;
-    @JsonProperty("components")
-    private List<ComponentDto> components;
+    @JsonProperty("url")
+    private String url;
 
-    public SectionDto() {
+    public TodoistProjectDto() {
+    }
+    public TodoistProjectDto(String name) {
+        this.name = name;
     }
 }

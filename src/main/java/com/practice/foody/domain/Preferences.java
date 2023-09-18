@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class Preferences {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

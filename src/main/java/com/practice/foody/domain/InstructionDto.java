@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
+@AllArgsConstructor
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InstructionDto {
     @JsonProperty("id")
@@ -15,4 +16,7 @@ public class InstructionDto {
     private int position;
     @JsonProperty("display_text")
     private String text;
+
+    public InstructionDto() {
+    }
 }

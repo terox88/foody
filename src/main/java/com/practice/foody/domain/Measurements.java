@@ -8,7 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class Measurements {
     @Id
     @NotNull
@@ -16,7 +15,7 @@ public class Measurements {
     private Long id;
     @Column(name = "QUANTITY")
     private String quantity;
-    @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToOne (cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "UNIT_ID")
     private Unit unit;
     @Setter

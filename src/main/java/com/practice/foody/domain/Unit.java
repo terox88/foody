@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

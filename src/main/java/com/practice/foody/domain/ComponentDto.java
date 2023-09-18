@@ -8,7 +8,8 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Data
+@AllArgsConstructor
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ComponentDto {
     @JsonProperty("id")
@@ -22,4 +23,6 @@ public class ComponentDto {
     @JsonProperty("ingredient")
     private  IngredientDto ingredient;
 
+    public ComponentDto() {
+    }
 }

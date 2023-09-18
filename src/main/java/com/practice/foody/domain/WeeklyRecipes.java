@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode
 public class WeeklyRecipes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
