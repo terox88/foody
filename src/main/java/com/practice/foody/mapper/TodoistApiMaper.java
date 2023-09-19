@@ -1,9 +1,6 @@
 package com.practice.foody.mapper;
 
-import com.practice.foody.domain.TodoistProject;
-import com.practice.foody.domain.TodoistProjectDto;
-import com.practice.foody.domain.TodoistTask;
-import com.practice.foody.domain.TodoistTaskDto;
+import com.practice.foody.domain.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +16,11 @@ public class TodoistApiMaper {
     }
     public TodoistTaskDto mapToTodoistTaskDto(TodoistTask todoistTask) {
         return new TodoistTaskDto(todoistTask.getId(), todoistTask.getContent(),todoistTask.getUrl(), todoistTask.getProjectId());
+    }
+    public TodoisTokenDto mapToTodoistTokenDto(TodoisToken todoisToken) {
+        return new TodoisTokenDto(todoisToken.getToken(),todoisToken.getType());
+    }
+    public TodoisToken mapToTodoistToken(TodoisTokenDto todoisTokenDto) {
+        return new TodoisToken(todoisTokenDto.getToken(),todoisTokenDto.getType());
     }
 }

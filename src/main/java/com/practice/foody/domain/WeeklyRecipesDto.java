@@ -12,5 +12,5 @@ public class WeeklyRecipesDto {
     private long id;
     private LocalDate weekBegin;
     private LocalDate weekEnd;
-    private List<DailyRecipesDto> dailyRecipes;
+    private List<Long> dailyRecipesId;
 }

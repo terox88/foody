@@ -23,4 +23,9 @@ public class TodoisToken {
     public String toString() {
         return type + " " + token;
     }
+
+    public TodoisToken(String token, String type) {
+        this.token = token;
+        this.type = type;
+    }
 }

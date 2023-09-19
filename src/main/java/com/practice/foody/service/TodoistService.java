@@ -2,10 +2,7 @@ package com.practice.foody.service;
 
 import com.practice.foody.client.TodoistApiClient;
 import com.practice.foody.domain.*;
-import com.practice.foody.exception.AlreadyCreatedProjectException;
-import com.practice.foody.exception.AlreadyCreatedTaskExcepton;
-import com.practice.foody.exception.CannotCreateTaskException;
-import com.practice.foody.exception.UserNotFoundException;
+import com.practice.foody.exception.*;
 import com.practice.foody.mapper.TodoistApiMaper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +22,7 @@ public class TodoistService {
         dbService.saveUser(user);
         return projectDto;
     }
-    public TodoistTaskDto createTask(long userId, long dailyRecipesId) throws UserNotFoundException, AlreadyCreatedTaskExcepton, CannotCreateTaskException {
+    public TodoistTaskDto createTask(long userId, long dailyRecipesId) throws UserNotFoundException, AlreadyCreatedTaskExcepton, CannotCreateTaskException, NoDailyRecipeException {
         User user = dbService.getUser(userId);
         DailyRecipes dailyRecipes = dbService.getDailyRecipes(dailyRecipesId);
         TodoistTaskDto taskDto = todoistApiClient.createTask(user, dailyRecipes);

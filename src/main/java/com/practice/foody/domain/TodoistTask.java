@@ -17,7 +17,7 @@ public class TodoistTask {
     @NotNull
     @Column(name = "ID")
     private String id;
-    @Column(name = "CONTENT")
+    @Column(name = "CONTENT", length = 5000)
     private String content;
     @Column(name = "TASK_URL")
     private String url;

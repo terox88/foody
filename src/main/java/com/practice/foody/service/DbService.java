@@ -1,6 +1,8 @@
 package com.practice.foody.service;
 
 import com.practice.foody.domain.*;
+import com.practice.foody.exception.NoDailyRecipeException;
+import com.practice.foody.exception.NoWeeklyRecipesException;
 import com.practice.foody.exception.RecipeNotFoundException;
 import com.practice.foody.exception.UserNotFoundException;
 import com.practice.foody.repository.*;
@@ -37,7 +39,7 @@ public class DbService {
     public void deleteRecipe(long id) {
         recipeRepository.deleteById(id);
     }
-    public Recipe findRecipe(long id) throws RecipeNotFoundException {
+    public Recipe getRecipe(long id) throws RecipeNotFoundException {
         return recipeRepository.findById(id).orElseThrow(RecipeNotFoundException::new);
     }
 
@@ -59,12 +61,16 @@ public class DbService {
         return dailyRecipesRepository.save(dailyRecipes);
 
     }
-    public DailyRecipes getDailyRecipes(long id) {
-        return dailyRecipesRepository.findById(id).orElse(new DailyRecipes());
+    public DailyRecipes getDailyRecipes(long id) throws NoDailyRecipeException {
+        return dailyRecipesRepository.findById(id).orElseThrow(NoDailyRecipeException::new);
     }
     public WeeklyRecipes saveWeeklyRecipes(WeeklyRecipes weeklyRecipes){
         return weeklyRecipesRepository.save(weeklyRecipes);
     }
+    public WeeklyRecipes getWeeklyRecipes(long id) throws  NoWeeklyRecipesException{
+        return weeklyRecipesRepository.findById(id).orElseThrow(NoWeeklyRecipesException:: new);
+    }
+
     public TodoistProject saveTodoistProject(TodoistProject project) {
         return todoistProjectRepository.save(project);
     }

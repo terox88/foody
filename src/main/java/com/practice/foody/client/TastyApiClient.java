@@ -36,7 +36,7 @@ public class TastyApiClient {
 
     public URI createQuery(Preferences preferences, MealType mealType, int offset) {
         List<String> tags = new ArrayList<>();
-        if(preferences != null) {
+        if(preferences.getPreferences() != null) {
             tags = preferences.getPreferences().stream()
                     .map(tag -> tag.getChose())
                     .collect(Collectors.toList());
@@ -54,7 +54,7 @@ public class TastyApiClient {
 
     public URI createQuery(Preferences preferences, MealType mealType) {
         List<String> tags = new ArrayList<>();
-        if(preferences != null) {
+        if(preferences.getPreferences() != null) {
             tags = preferences.getPreferences().stream()
                     .map(tag -> tag.getChose())
                     .collect(Collectors.toList());

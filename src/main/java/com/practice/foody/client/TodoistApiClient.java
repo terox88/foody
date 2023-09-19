@@ -17,10 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-
-
-import java.net.URI;
-
 @Component
 @RequiredArgsConstructor
 public class TodoistApiClient {
@@ -58,7 +54,6 @@ public class TodoistApiClient {
 
     public HttpHeaders createHeaders(User user) {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "application/json");
         headers.set("Authorization", user.getToken().toString());
         return headers;
     }
