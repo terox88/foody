@@ -47,7 +47,7 @@ public class DbServiceTest {
         //When
         dbService.saveRecipe(recipe);
         long id = recipe.getId();
-        Recipe receivedRecipe = dbService.findRecipe(id);
+        Recipe receivedRecipe = dbService.getRecipe(id);
 
         //Then
         Assertions.assertFalse(receivedRecipe.getSections().isEmpty());
@@ -76,8 +76,6 @@ public class DbServiceTest {
         //Then
         Assertions.assertEquals("test recipe", savedUser.getWeeklyRecipes().get(0).getDailyRecipes().get(0).getRecipes().stream().toList().get(0).getName());
         //CleanUp
-        dailyRecipesRepository.deleteById(dailyId);
-        weeklyRecipesRepository.deleteById(weeklyId);
         dbService.deleteUser(id);
     }
 }

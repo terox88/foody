@@ -63,4 +63,9 @@ public class UserController {
         User user = dbService.getUser(userId);
         return ResponseEntity.ok(todoistApiMaper.mapToTodoistProjectDto(user.getTodoistProject()));
     }
+    @DeleteMapping(value = "{userId}")
+    ResponseEntity<Void> deleteUser(@PathVariable long userId) {
+        dbService.deleteUser(userId);
+        return ResponseEntity.ok().build();
+    }
 }

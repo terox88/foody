@@ -7,7 +7,6 @@ import com.practice.foody.domain.TodoistTaskDto;
 import com.practice.foody.exception.*;
 import com.practice.foody.mapper.DomainMapper;
 import com.practice.foody.mapper.TastyApiMapper;
-import com.practice.foody.mapper.TodoistApiMaper;
 import com.practice.foody.service.DbService;
 import com.practice.foody.service.TodoistService;
 import lombok.RequiredArgsConstructor;

@@ -25,7 +25,7 @@ public class WeeklyRecipes {
     @OneToMany(
             targetEntity = DailyRecipes.class,
             mappedBy = "weeklyRecipes",
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},
+            cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY
     )
     private List<DailyRecipes> dailyRecipes = new ArrayList<>();
