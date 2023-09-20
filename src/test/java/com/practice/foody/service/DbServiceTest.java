@@ -19,10 +19,6 @@ import java.util.List;
 public class DbServiceTest {
     @Autowired
     private DbService dbService;
-    @Autowired
-    private WeeklyRecipesRepository weeklyRecipesRepository;
-    @Autowired
-    private DailyRecipesRepository dailyRecipesRepository;
 
     private Recipe recipe;
     @BeforeEach
@@ -70,8 +66,6 @@ public class DbServiceTest {
         //When
         dbService.saveUser(user);
         long id = user.getId();
-        long dailyId = user.getWeeklyRecipes().get(0).getId();
-        long weeklyId = user.getWeeklyRecipes().get(0).getId();
         User savedUser = dbService.getUser(id);
         //Then
         Assertions.assertEquals("test recipe", savedUser.getWeeklyRecipes().get(0).getDailyRecipes().get(0).getRecipes().stream().toList().get(0).getName());
