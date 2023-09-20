@@ -25,7 +25,6 @@ public class User {
     @Column(name = "PASSWORD")
     @NotNull
     private String password;
-    @Setter
     @OneToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "PREFERENCES_ID")
     private Preferences preferences;

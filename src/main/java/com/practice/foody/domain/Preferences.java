@@ -1,10 +1,7 @@
 package com.practice.foody.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ public class Preferences {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private long id;
+    @Setter
     @Column(name = "PREFERENCES")
     private List<UserChose> preferences = new ArrayList<>();
 }

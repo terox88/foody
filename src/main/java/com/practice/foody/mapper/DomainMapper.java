@@ -28,6 +28,9 @@ public class DomainMapper {
         return new PreferencesDto(preferences.getId(), preferences.getPreferences());
     }
     public Preferences mapToPreferences(PreferencesDto preferencesDto){
+        if(preferencesDto == null) {
+            return new Preferences();
+        }
         return new Preferences(preferencesDto.getId(), preferencesDto.getPreferences());
     }
     public UserDto mapToUserDto(User user) {

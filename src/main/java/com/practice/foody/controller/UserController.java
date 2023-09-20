@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok(domainMapper.mapToUserDto(dbService.getUser(userId)));
     }
     @PutMapping(value = "/token")
-    public ResponseEntity<Void> setTodoisToken(@RequestParam long userId, @RequestBody TodoisTokenDto todoisTokenDto)throws UserNotFoundException {
+    public ResponseEntity<Void> todoistIntegration(@RequestParam long userId, @RequestBody TodoisTokenDto todoisTokenDto)throws UserNotFoundException {
         User user = dbService.getUser(userId);
         TodoisToken token = todoistApiMaper.mapToTodoistToken(todoisTokenDto);
         user.setToken(token);
@@ -51,7 +51,7 @@ public class UserController {
     public ResponseEntity<UserDto> changePreferences(@RequestParam long userId, @RequestBody PreferencesDto preferencesDto)throws UserNotFoundException {
         User user = dbService.getUser(userId);
         Preferences preferences = domainMapper.mapToPreferences(preferencesDto);
-        user.setPreferences(preferences);
+        user.getPreferences().setPreferences(preferences.getPreferences());
       return   ResponseEntity.ok(domainMapper.mapToUserDto(dbService.saveUser(user)));
     }
     @PutMapping(value = "/todoist")
