@@ -70,7 +70,11 @@ public class DbService {
     public WeeklyRecipes getWeeklyRecipes(long id) throws  NoWeeklyRecipesException{
         return weeklyRecipesRepository.findById(id).orElseThrow(NoWeeklyRecipesException:: new);
     }
+    public List<DailyRecipes> getDailyRecipesList(long id) throws NoWeeklyRecipesException {
+        WeeklyRecipes weeklyRecipes = weeklyRecipesRepository.findById(id).orElseThrow(NoWeeklyRecipesException::new);
+        return weeklyRecipes.getDailyRecipes();
 
+    }
     public TodoistProject saveTodoistProject(TodoistProject project) {
         return todoistProjectRepository.save(project);
     }

@@ -17,5 +17,6 @@ public class UserDto {
     private Role role;
     private LocalTime created;
     private boolean hasToken;
+    private boolean hasProject;
 
 }

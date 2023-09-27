@@ -29,6 +29,10 @@ public class RecipeController {
     public ResponseEntity<DailyRecipesDto> getDailyRecipes(@RequestParam long dailyId) throws NoDailyRecipeException {
         return ResponseEntity.ok(domainMapper.mapToDailyRecipesDto(dbService.getDailyRecipes(dailyId)));
     }
+    @GetMapping(value = "/daily/list")
+    public ResponseEntity<List<DailyRecipesDto>> getDailyRecipesList (@RequestParam long weekId)throws NoWeeklyRecipesException{
+        return ResponseEntity.ok(domainMapper.mapToDailyRecipesDtoList(dbService.getDailyRecipesList(weekId)));
+    }
     @PostMapping(value = "/daily")
     public ResponseEntity<TodoistTaskDto> createShoppingList(@RequestParam long dailyId) throws NoDailyRecipeException, UserNotFoundException, AlreadyCreatedTaskExcepton, CannotCreateTaskException {
         DailyRecipes dailyRecipes = dbService.getDailyRecipes(dailyId);

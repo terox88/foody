@@ -34,7 +34,7 @@ public class DomainMapper {
         return new Preferences(preferencesDto.getId(), preferencesDto.getPreferences());
     }
     public UserDto mapToUserDto(User user) {
-        return new UserDto(user.getId(), user.getEmail(), user.getPassword(), mapToPreferencesDto(user.getPreferences()), user.getRole(), user.getCreated(),user.getToken() != null);
+        return new UserDto(user.getId(), user.getEmail(), user.getPassword(), mapToPreferencesDto(user.getPreferences()), user.getRole(), user.getCreated(),user.getToken() != null, user.getTodoistProject() != null);
     }
     public User mapToUser(UserDto userDto) {
         return new User(userDto.getId(), userDto.getEmail(), userDto.getPassword(), mapToPreferences(userDto.getPreferences()),userDto.getRole());
