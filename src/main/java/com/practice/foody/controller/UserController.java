@@ -34,15 +34,15 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getUsers() {
         List<User> userList = dbService.getUsers();
         return ResponseEntity.ok(domainMapper.mapToUserDtoList(userList));
-    }
+   }
     @GetMapping(value = "{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable long userId) throws UserNotFoundException{
         return ResponseEntity.ok(domainMapper.mapToUserDto(dbService.getUser(userId)));
     }
     @PutMapping(value = "/token")
-    public ResponseEntity<Void> todoistIntegration(@RequestParam long userId, @RequestBody TodoisTokenDto todoisTokenDto)throws UserNotFoundException {
+    public ResponseEntity<Void> todoistIntegration(@RequestParam long userId, @RequestParam String code)throws UserNotFoundException {
         User user = dbService.getUser(userId);
-        TodoisToken token = todoistApiMaper.mapToTodoistToken(todoisTokenDto);
+        TodoisToken token = todoistApiMaper.mapToTodoistToken(todoistService.getToken(code));
         user.setToken(token);
         dbService.saveUser(user);
         return ResponseEntity.ok().build();

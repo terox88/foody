@@ -31,4 +31,7 @@ public class TodoistService {
         dbService.saveUser(user);
         return taskDto;
     }
+    public TodoisTokenDto getToken(String code) {
+        return todoistApiClient.getToken(code);
+    }
 }

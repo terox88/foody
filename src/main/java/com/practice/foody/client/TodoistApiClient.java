@@ -1,10 +1,7 @@
 package com.practice.foody.client;
 
 import com.practice.foody.config.TodoistConfig;
-import com.practice.foody.domain.DailyRecipes;
-import com.practice.foody.domain.TodoistProjectDto;
-import com.practice.foody.domain.TodoistTaskDto;
-import com.practice.foody.domain.User;
+import com.practice.foody.domain.*;
 import com.practice.foody.exception.AlreadyCreatedProjectException;
 import com.practice.foody.exception.AlreadyCreatedTaskExcepton;
 import com.practice.foody.exception.CannotCreateTaskException;
@@ -16,6 +13,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @Component
 @RequiredArgsConstructor
@@ -56,6 +56,13 @@ public class TodoistApiClient {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", user.getToken().toString());
         return headers;
+    }
+    public TodoisTokenDto getToken(String code) {
+        URI uri = UriComponentsBuilder.fromHttpUrl(todoistConfig.getTokenEndpoint())
+                .queryParam("client_id", todoistConfig.getClientId())
+                .queryParam("client_secret", todoistConfig.getSecret())
+                .queryParam("code",code).build().encode().toUri();
+        return restTemplate.postForObject(uri,null,TodoisTokenDto.class);
     }
 
 }

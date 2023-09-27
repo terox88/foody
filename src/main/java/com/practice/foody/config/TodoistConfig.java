@@ -12,5 +12,11 @@ public class TodoistConfig {
 
     @Value("${todois.api.task.endpoint}")
     private String taskEndpoint;
+    @Value("${todois.api.token.endpoint}")
+    private String tokenEndpoint;
+    @Value("${todois.api.clientId}")
+    private String clientId;
+    @Value("${todois.api.secret}")
+    private String secret;
 
 }

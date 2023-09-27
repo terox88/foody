@@ -16,5 +16,6 @@ public class UserDto {
     private PreferencesDto preferences;
     private Role role;
     private LocalTime created;
+    private boolean hasToken;
 
 }
