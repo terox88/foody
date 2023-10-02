@@ -12,7 +12,7 @@ public class DomainMapper {
     private final TodoistApiMaper todoistApiMaper;
     public DailyRecipesDto mapToDailyRecipesDto(DailyRecipes dailyRecipes) {
         List<Long> recipesId = dailyRecipes.getRecipes().stream().map(Recipe::getId).toList();
-        return new DailyRecipesDto(dailyRecipes.getId(), dailyRecipes.getDay(), recipesId, todoistApiMaper.mapToTodoistTaskDto(dailyRecipes.getTodoistTask()));
+        return new DailyRecipesDto(dailyRecipes.getId(), dailyRecipes.getDay(), recipesId, todoistApiMaper.mapToTodoistTaskDto(dailyRecipes.getTodoistTask()), dailyRecipes.getShopList());
     }
     public List<DailyRecipesDto> mapToDailyRecipesDtoList(List<DailyRecipes> dailyRecipesList) {
         return dailyRecipesList.stream().map(this::mapToDailyRecipesDto).toList();

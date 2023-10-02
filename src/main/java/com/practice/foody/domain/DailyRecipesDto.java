@@ -13,5 +13,6 @@ public class DailyRecipesDto {
     private LocalDate day;
     private List<Long> recipesId;
     private TodoistTaskDto todoistTaskDto;
+    private String shoppingList;
 
 }
