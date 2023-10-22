@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface UserRepository extends ListCrudRepository<User,Long> {
     List<User> findAll();
     Optional<User> findById(long id);
+    Optional<User> findByEmailAndPassword(String email, String password);
     @Override
     User save(User user);
 

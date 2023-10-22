@@ -10,7 +10,6 @@ import com.practice.foody.mapper.DomainMapper;
 import com.practice.foody.service.DbService;
 import com.practice.foody.service.WeeklyRecipesCreatorService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ import java.util.List;
 @RequestMapping("v1/week")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-@Slf4j
+
 public class WeeklyRecipesController {
     private final DbService dbService;
     private final DomainMapper domainMapper;
@@ -34,7 +33,6 @@ public class WeeklyRecipesController {
     }
     @GetMapping(value = "{userId}")
     public ResponseEntity<List<WeeklyRecipesDto>> getUserWeeklyRecipesList(@PathVariable long userId) throws UserNotFoundException{
-        log.info("searching for user with id: " + userId);
         User user = dbService.getUser(userId);
         List<WeeklyRecipes> list = user.getWeeklyRecipes();
         return ResponseEntity.ok(domainMapper.mapToWeeklyRecipiesDtoList(list));

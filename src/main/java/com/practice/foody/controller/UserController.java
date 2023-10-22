@@ -63,6 +63,11 @@ public class UserController {
         User user = dbService.getUser(userId);
         return ResponseEntity.ok(todoistApiMaper.mapToTodoistProjectDto(user.getTodoistProject()));
     }
+    @PostMapping (value ="/login" )
+    public ResponseEntity<UserDto> loginUser(@RequestBody LoginDataDto loginDataDto) throws UserNotFoundException {
+        User user = dbService.login(loginDataDto.getEmail(), loginDataDto.getPassword());
+        return ResponseEntity.ok(domainMapper.mapToUserDto(user));
+    }
     @DeleteMapping(value = "{userId}")
     ResponseEntity<Void> deleteUser(@PathVariable long userId) {
         dbService.deleteUser(userId);

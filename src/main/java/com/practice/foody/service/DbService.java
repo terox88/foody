@@ -53,6 +53,9 @@ public class DbService {
     public User getUser(long id) throws UserNotFoundException {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
+    public User login(String email, String password) throws UserNotFoundException {
+        return userRepository.findByEmailAndPassword(email,password).orElseThrow(UserNotFoundException::new);
+    }
     public void deleteUser(long id) {
         userRepository.deleteById(id);
     }
