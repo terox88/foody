@@ -24,7 +24,7 @@ public class TodoistApiClient {
     private final TodoistConfig todoistConfig;
 
     public TodoistProjectDto createProject(User user) throws AlreadyCreatedProjectException{
-        if (user.getTodoistProject() != null) {
+        if (user.getTodoistProject().getId() != null) {
             throw new AlreadyCreatedProjectException();
         }
         HttpHeaders headers = createHeaders(user);
@@ -36,7 +36,7 @@ public class TodoistApiClient {
     }
 
     public TodoistTaskDto createTask(User user, DailyRecipes dailyRecipes) throws AlreadyCreatedTaskExcepton, CannotCreateTaskException{
-        if(dailyRecipes.getTodoistTask() != null) {
+        if(dailyRecipes.getTodoistTask().getId() != null) {
             throw  new AlreadyCreatedTaskExcepton();
         }
        boolean isTaskForUser = user.getWeeklyRecipes().stream().flatMap(weeklyRecipes -> weeklyRecipes.getDailyRecipes().stream())
